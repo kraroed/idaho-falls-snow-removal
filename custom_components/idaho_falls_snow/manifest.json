@@ -1,0 +1,11 @@
+{
+  "domain": "idaho_falls_snow",
+  "name": "Idaho Falls Snow Removal",
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://github.com/kraroed/idaho-falls-snow-removal",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/kraroed/idaho-falls-snow-removal/issues",
+  "requirements": ["beautifulsoup4>=4.12.0"],
+  "version": "1.1.0"
+}

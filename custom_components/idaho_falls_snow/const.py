@@ -1,0 +1,14 @@
+DOMAIN="idaho_falls_snow"
+MANUFACTURER="City of Idaho Falls Public Works"
+CONF_SCAN_INTERVAL="scan_interval"
+DEFAULT_SCAN_INTERVAL=15
+MIN_SCAN_INTERVAL=5
+MAX_SCAN_INTERVAL=120
+SNOW_MAP_URL="https://cifgis.idahofalls.gov/arcgis/rest/services/Snow/MapServer"
+SNOW_PAGE_URL="https://idahofallsidaho.gov/378/Snow-Removal"
+LAYER_PARKING=10
+LAYER_ZONES=20
+LAYER_PRIORITY_STATUS=30
+LAYER_ZONE_STATUS=40
+LAYER_PLOWED_PRIORITY=50
+LAYER_PLOWED_METHOD=60
