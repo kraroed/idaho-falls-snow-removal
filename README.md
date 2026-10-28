@@ -12,5 +12,3 @@ Official sources:
 - https://cifgis.idahofalls.gov/arcgis/rest/services/Snow/MapServer
 
 The parking-restriction GIS layer describes ordinance street geometry; its segment count does not itself prove restrictions are currently active. The integration separately reads the City's public snow-removal page.
-
-Replace `kraroed` in `manifest.json` before publishing the repository.
