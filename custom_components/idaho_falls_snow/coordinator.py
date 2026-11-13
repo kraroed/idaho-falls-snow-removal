@@ -158,7 +158,7 @@ class IdahoFallsSnowCoordinator(DataUpdateCoordinator):
             return data
         except UpdateFailed:
             raise
-        except (aiohttp.ClientError, asyncio.TimeoutError, ValueError, RuntimeError) as err:
+        except Exception as err:
             raise UpdateFailed(
                 f"Unable to reach or parse Idaho Falls snow sources: {err}"
             ) from err
