@@ -17,10 +17,10 @@ class Snow(Base):
     @property
     def native_value(self): return self.g(self.c.data)
     @property
-    def extra_state_attributes(self): return {"source_url":self.c.data["source_url"],"map_url":self.c.data["map_url"],"city_page_updated":self.c.data["city_page"]["updated"],"city_parking_restrictions":self.c.data["city_page"]["parking_restrictions"]}
+    def extra_state_attributes(self): return {"source_url":self.c.data["source_url"],"map_url":self.c.data["map_url"],"city_page_updated":self.c.data["city_page"]["updated"],"city_parking_restrictions":self.c.data["city_page"]["parking_restrictions"],"source_data_updated":self.c.data["fetched_at"]}
 class Zone(Base):
     def __init__(self,c,k,n): super().__init__(c); self.k=k; self._attr_name=n; self._attr_unique_id=f"idaho_falls_snow_{k}"
     @property
     def native_value(self): return self.c.data["zones"].get(self.k,{}).get("status","unknown")
     @property
-    def extra_state_attributes(self): return {**self.c.data["zones"].get(self.k,{}),"source_url":self.c.data["source_url"],"map_url":self.c.data["map_url"],"plow_method_counts":self.c.data["method_counts"],"plow_agency_counts":self.c.data["agency_counts"]}
+    def extra_state_attributes(self): return {**self.c.data["zones"].get(self.k,{}),"source_url":self.c.data["source_url"],"map_url":self.c.data["map_url"],"plow_method_counts":self.c.data["method_counts"],"plow_agency_counts":self.c.data["agency_counts"],"source_data_updated":self.c.data["fetched_at"]}
