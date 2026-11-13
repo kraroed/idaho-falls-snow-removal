@@ -3,7 +3,7 @@ import re
 _WORKING_STATUSES = {"working", "in progress", "active", "plowing", "started"}
 _COMPLETED_STATUSES = {"complete", "completed", "finished", "done", "plowed"}
 _UPDATED_RE = re.compile(
-    r"Updated\\s*:?[ \\t]*([A-Za-z]{3,9}\\.?\\s+\\d{1,2},\\s+\\d{4})",
+    r"Updated\s*:?[ \t]*([A-Za-z]{3,9}\.?\s+\d{1,2},\s+\d{4})",
     re.IGNORECASE,
 )
 
@@ -16,6 +16,8 @@ def normalize_status(value):
 def working(value):
     """Return true only for recognized active status words or phrases."""
     normalized = normalize_status(value)
+    if normalized.startswith(("not ", "no ")):
+        return False
     return normalized in _WORKING_STATUSES or bool(
         set(normalized.split()) & {"working", "active", "plowing", "started"}
     ) or "in progress" in normalized
@@ -24,13 +26,15 @@ def working(value):
 def completed(value):
     """Return true only for recognized completed status words."""
     normalized = normalize_status(value)
+    if normalized.startswith(("not ", "no ")):
+        return False
     return normalized in _COMPLETED_STATUSES or bool(
         set(normalized.split()) & {"complete", "completed", "finished", "done", "plowed"}
     )
 
 
 def updated_date(text):
-    """Extract the City page's displayed update date, including abbreviated months."""
+    """Extract the City's displayed update date, including abbreviated months."""
     match = _UPDATED_RE.search(text or "")
     return match.group(1) if match else None
 
