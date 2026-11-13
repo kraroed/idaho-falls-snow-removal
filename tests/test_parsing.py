@@ -1,11 +1,22 @@
 """Regression tests for GIS status and City page parsing."""
 
-from custom_components.idaho_falls_snow.parsing import (
-    completed,
-    updated_date,
-    working,
-    zone_key,
+import importlib.util
+from pathlib import Path
+
+_PARSING_PATH = (
+    Path(__file__).parents[1]
+    / "custom_components"
+    / "idaho_falls_snow"
+    / "parsing.py"
 )
+_SPEC = importlib.util.spec_from_file_location("snow_parsing", _PARSING_PATH)
+_PARSING = importlib.util.module_from_spec(_SPEC)
+_SPEC.loader.exec_module(_PARSING)
+
+completed = _PARSING.completed
+updated_date = _PARSING.updated_date
+working = _PARSING.working
+zone_key = _PARSING.zone_key
 
 
 def test_working_statuses_are_recognized_without_substring_false_positives():
@@ -13,9 +24,11 @@ def test_working_statuses_are_recognized_without_substring_false_positives():
     assert working("In Progress")
     assert working("ACTIVE")
     assert working("Plowing - Priority 1")
+    assert working("Started")
     assert not working("Inactive")
     assert not working("Not active")
-    assert not working("Started later")
+    assert not working("No work scheduled")
+    assert not working("Pending")
 
 
 def test_completed_statuses_are_recognized_without_substring_false_positives():
