@@ -195,7 +195,7 @@ class IdahoFallsSnowCoordinator(DataUpdateCoordinator):
             body = await response.text()
 
         page_text = re.sub(
-            r"\\s+",
+            r"\s+",
             " ",
             html.unescape(BeautifulSoup(body, "html.parser").get_text(" ", strip=True)),
         )
