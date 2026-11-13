@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.1
+
+- Make snow-removal sensors and the snow-event binary sensor coordinator-aware so successful refreshes update entity states and attributes.
+- Add regression tests for coordinator-backed sensor and binary-sensor entities.
+- Remove accidentally committed Python bytecode and ignore Python cache and virtual-environment files.
+
 ## 1.2.0
 
 - Keep the last successful coordinator data when a GIS layer request fails instead of presenting failed layers as zero activity.
